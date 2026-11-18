@@ -1,35 +1,56 @@
-# 🛡️ Trueview | Decentralized News Verification Portal
+# ⚡ VeriPulse | Decentralized Fact Forensics & Narrative Integrity
 
-Trueview is a state-of-the-art cybersecurity and news verification platform designed to fight misinformation. By leveraging decentralized nodes and AI-driven analysis, Trueview provides high-fidelity verdicts on the authenticity of news headlines and digital content.
+VeriPulse is an autonomous cybersecurity and fact-forensics intelligence platform designed to neutralize digital disinformation. By leveraging decentralized sentinel nodes, neural semantic parsing, and cryptographic consensus, VeriPulse provides real-time verification verdicts on breaking headlines, claims, and digital media.
 
 ---
 
 ## 🚀 Key Features
 
-- **Verification Engine**: Instantly scan news snippets or URLs to detect FAKE or TRUTH consensus using AI-driven logic.
-- **Live Intelligence Map**: A global 3D globe visualization (Three.js/Leaflet) tracking trending disinformation in real-time.
-- **Modern UI/UX**: Premium futuristic design featuring scanlines, glassmorphism, and smooth Framer Motion animations.
-- **Decentralized Node Network**: Real-time stats showing active fact-checkers and claims verified across the globe.
+- **Forensic Scanner**: Instantly audit claims, headlines, or article URLs to detect disinformation consensus and cross-examine primary press records.
+- **Planetary Intelligence Radar**: A real-time 3D planetary globe (Three.js) and geospatial radar tracking viral disinformation outbreaks and verified news drops globally.
+- **Forensic Pipeline**: 4-stage verification architecture spanning Signal Ingestion, Semantic Forensics, Consensus Swarm, and Cryptographic Attestation.
+- **Matrix Cyber Aesthetic**: High-performance UI engineered with glassmorphism, scanlines, particle constellations, and smooth Framer Motion telemetry.
+- **Decentralized Sentinel Grid**: Live metrics tracking active nodes, attested claims, and consensus precision worldwide.
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: HTML5, Vanilla CSS3 (Custom Cyber Design), JavaScript (ES6+), Three.js, Leaflet.js, Framer Motion.
+- **Frontend**: HTML5, Tailwind CSS + Custom Matrix Emerald/Teal Cyber Engine, JavaScript (ES6+), Three.js (3D Holographic Globe & Core Gimbal), Leaflet.js, Framer Motion.
 - **Backend**: Node.js, Express.js.
-- **APIs**: Serper API (Internal news lookups), Vercel Serverless Functions.
+- **APIs**: Serper API (Internal news lookups & reverse image verification), Vercel Serverless Functions.
 - **Deployment**: Vercel.
+
+---
+
+## 💻 Getting Started
+
+### 1. Installation
+```bash
+npm install
+```
+
+### 2. Environment Variables
+Create a `.env` file in the root directory:
+```env
+PORT=3000
+NEWS_API_KEY=your_serper_api_key_here
+```
+
+### 3. Run Locally
+```bash
+npm start
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
 ## 🌩️ Deployment
 
-The project is pre-configured with `vercel.json` for seamless deployment. All API routes under `/api/*` are automatically routed to the Express backend.
-
-**Live Demo**: [https://trueview-delta.vercel.app/](https://trueview-delta.vercel.app/)
+The project is pre-configured with `vercel.json` for seamless serverless deployment. All routes under `/api/*` route to the Express backend.
 
 ---
 
 ## ⚖️ License
 
-&copy; 2026 Trueview Portal. Cryptographically signed and verified. All Rights Reserved.
+&copy; 2026 VeriPulse Network. All verifications cryptographically signed and attested. All Rights Reserved.

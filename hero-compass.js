@@ -23,12 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
     compassGroup.position.y = 5;
     scene.add(compassGroup);
 
-    // Color Palette
-    const cyanLight = 0x00ffff;
-    const cyanDark = 0x0088cc;
-    const neonBlue = 0x0055ff;
-    const cyberGreen = 0x00ff88;
-    const deepBg = 0x050a15;
+    // Color Palette (Matrix Emerald & Teal)
+    const cyanLight = 0x22d3ee;
+    const cyanDark = 0x0d9488;
+    const neonBlue = 0x06b6d4;
+    const cyberGreen = 0x10b981;
+    const deepBg = 0x021f1d;
 
     // --- 1. OUTER HOLOGRAPHIC RING ---
     const outerRadius = 55;

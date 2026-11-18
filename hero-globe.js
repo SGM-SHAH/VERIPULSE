@@ -23,9 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Dark Base Sphere
     const geometry = new THREE.SphereGeometry(radius, segments, segments);
     const material = new THREE.MeshPhongMaterial({
-        color: 0x02040a,
-        emissive: 0x0b0f19,
-        specular: 0x00d2ff,
+        color: 0x02070d,
+        emissive: 0x071b20,
+        specular: 0x06b6d4,
         shininess: 25,
         transparent: true,
         opacity: 0.9,
@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const globe = new THREE.Mesh(geometry, material);
     scene.add(globe);
 
-    // Wireframe Overlay to match Singularity aesthetic
+    // Wireframe Overlay to match VeriPulse aesthetic
     const wireMaterial = new THREE.MeshBasicMaterial({
-        color: 0x00d2ff,
+        color: 0x06b6d4,
         wireframe: true,
         transparent: true,
         opacity: 0.2
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Grid/Atmosphere glow
     const glowMaterial = new THREE.MeshBasicMaterial({
-        color: 0x3a7bd5,
+        color: 0x0d9488,
         transparent: true,
         opacity: 0.08,
         side: THREE.BackSide,
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0x00d2ff, 2);
+    const pointLight = new THREE.PointLight(0x06b6d4, 2);
     pointLight.position.set(100, 100, 100);
     scene.add(pointLight);
 

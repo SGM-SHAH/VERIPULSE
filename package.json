@@ -1,7 +1,7 @@
 {
-  "name": "trueview-intelligence",
+  "name": "veripulse-intelligence",
   "version": "1.0.0",
-  "description": "Trueview Intelligence Network | High-Performance News Verification",
+  "description": "VeriPulse Intelligence Network | Decentralized Fact Forensics & Narrative Integrity",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

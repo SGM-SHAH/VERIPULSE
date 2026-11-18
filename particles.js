@@ -1,4 +1,4 @@
-// particles.js - Enhanced Constellation Effect
+// particles.js - Enhanced Constellation Effect (Matrix Emerald & Teal)
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("canvas-particles");
@@ -34,21 +34,21 @@ document.addEventListener("DOMContentLoaded", () => {
         constructor() {
             this.x = Math.random() * w;
             this.y = Math.random() * h;
-            
+
             // Depth simulation: 0 to 1
             this.z = Math.random();
-            
+
             this.size = (this.z * 2) + 0.5; // Near particles are larger
             this.baseX = this.x;
             this.baseY = this.y;
             this.density = (Math.random() * 30) + 1;
-            
+
             // Speed scaled by depth
             this.speedX = ((Math.random() * 0.6) - 0.3) * (this.z + 0.5);
             this.speedY = ((Math.random() * 0.6) - 0.3) * (this.z + 0.5);
-            
-            // Colors: Purple for distant (smaller), Amber for near (larger)
-            this.color = this.z > 0.6 ? '#8b5cf6' : '#ff9f1c';
+
+            // Colors: Teal for distant (#06b6d4), Emerald for near (#10b981)
+            this.color = this.z > 0.6 ? '#06b6d4' : '#10b981';
         }
 
         update() {
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 let dx = mouse.x - this.x;
                 let dy = mouse.y - this.y;
                 let distance = Math.sqrt(dx * dx + dy * dy);
-                
+
                 if (distance < mouse.radius) {
                     const force = (mouse.radius - distance) / mouse.radius;
                     const directionX = dx / distance;
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
-            
+
             // Subtle glow for large/near particles
             if (this.z > 0.8) {
                 ctx.shadowBlur = 10;
@@ -109,14 +109,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Max distance for connection
                 let maxDist = 200;
-                
+
                 if (distance < maxDist) {
                     let opacity = 1 - (distance / maxDist);
                     // Connection strength also depends on depth similarity
                     let zDiff = 1 - Math.abs(particles[a].z - particles[b].z);
                     opacity *= zDiff * 0.4;
 
-                    ctx.strokeStyle = `rgba(255, 159, 28, ${opacity})`;
+                    ctx.strokeStyle = `rgba(16, 185, 129, ${opacity})`;
                     ctx.lineWidth = 0.3 * zDiff;
                     ctx.beginPath();
                     ctx.moveTo(particles[a].x, particles[a].y);
@@ -140,4 +140,3 @@ document.addEventListener("DOMContentLoaded", () => {
     resizeReset();
     animate();
 });
-

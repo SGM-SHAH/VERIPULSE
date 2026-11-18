@@ -1,13 +1,13 @@
 :root {
     color-scheme: dark;
-    --bg: #010103;
-    --primary: #8b5cf6;
-    --primary-glow: rgba(139, 92, 246, 0.6);
-    --secondary: #ff9f1c;
-    --secondary-glow: rgba(255, 159, 28, 0.6);
-    --accent: #f43f5e;
-    --border: rgba(255, 255, 255, 0.05);
-    --glass-bg: rgba(10, 10, 15, 0.4);
+    --bg: #02070d;
+    --primary: #10b981;
+    --primary-glow: rgba(16, 185, 129, 0.6);
+    --secondary: #06b6d4;
+    --secondary-glow: rgba(6, 182, 212, 0.6);
+    --accent: #14b8a6;
+    --border: rgba(255, 255, 255, 0.07);
+    --glass-bg: rgba(6, 19, 28, 0.5);
 }
 
 * {
@@ -25,15 +25,15 @@ body {
     font-family: 'Space Grotesk', sans-serif;
     overflow-x: hidden;
     line-height: 1.6;
-    /* Subtly animated deep space background */
-    background-image: radial-gradient(circle at 50% 0%, #170B2F 0%, var(--bg) 70%);
+    /* Subtly animated deep space background with matrix emerald & teal hue */
+    background-image: radial-gradient(circle at 50% 0%, #032b26 0%, var(--bg) 70%);
     background-attachment: fixed;
 }
 
 ::selection {
     background: var(--primary);
-    color: #fff;
-    text-shadow: 0 0 10px #fff;
+    color: #02070d;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
 }
 
 /* Base Buttons */
@@ -42,9 +42,9 @@ body {
    ======================================================================= */
 .btn-primary {
     position: relative;
-    background: linear-gradient(120deg, var(--primary), #8b5cf6, var(--secondary), var(--primary));
+    background: linear-gradient(120deg, var(--primary), #059669, var(--secondary), var(--primary));
     background-size: 300% 300%;
-    color: white;
+    color: #02070d;
     padding: 1rem 2.2rem;
     border-radius: 14px;
     font-weight: 800;
@@ -58,7 +58,7 @@ body {
     animation: plasma-flow 6s ease infinite;
     box-shadow: 0 0 20px var(--primary-glow), inset 0 2px 0 rgba(255,255,255,0.4);
     /* Magnetic smooth transitions */
-    transition: box-shadow 0.3s ease, background-position 0.3s ease;
+    transition: box-shadow 0.3s ease, background-position 0.3s ease, transform 0.2s ease;
     cursor: pointer;
 }
 
@@ -74,9 +74,10 @@ body {
 }
 
 .btn-primary:hover {
-    box-shadow: 0 0 40px var(--secondary-glow), inset 0 2px 0 rgba(255,255,255,0.6);
+    box-shadow: 0 0 35px var(--secondary-glow), inset 0 2px 0 rgba(255,255,255,0.6);
     animation: plasma-flow 3s ease infinite;
-    color: white;
+    color: #02070d;
+    transform: translateY(-2px);
 }
 
 .btn-primary:hover::before { opacity: 1; }
@@ -93,7 +94,7 @@ body {
     inset: 0;
     z-index: -20;
     pointer-events: none;
-    background: #010103;
+    background: #02070d;
 }
 
 .noise-texture {
@@ -108,14 +109,14 @@ body {
 .vignette-v {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, #010103 0%, transparent 20%, transparent 80%, #010103 100%);
+    background: linear-gradient(to bottom, #02070d 0%, transparent 20%, transparent 80%, #02070d 100%);
     opacity: 0.8;
 }
 
 .vignette-h {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, #010103 0%, transparent 15%, transparent 85%, #010103 100%);
+    background: linear-gradient(to right, #02070d 0%, transparent 15%, transparent 85%, #02070d 100%);
     opacity: 0.8;
 }
 
@@ -123,8 +124,8 @@ body {
     position: absolute;
     inset: 0;
     background-image: 
-        linear-gradient(rgba(255, 159, 28, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 159, 28, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 182, 212, 0.04) 1px, transparent 1px);
     background-size: 60px 60px;
     opacity: 0.5;
 }
@@ -235,8 +236,8 @@ body {
 
 .glass-card:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 30px 60px -15px rgba(99, 102, 241, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
-    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 25px 50px -15px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(255,255,255,0.2);
+    border-color: rgba(16, 185, 129, 0.3);
 }
 .glass-card:hover::before { opacity: 0.5; }
 
@@ -282,11 +283,11 @@ body {
     font-weight: 900;
     text-transform: uppercase;
     position: relative;
-    text-shadow: 0 0 80px rgba(0, 210, 255, 0.1);
+    text-shadow: 0 0 80px rgba(16, 185, 129, 0.2);
 }
 
 .tech-accent {
-    background: linear-gradient(to right, #ffffff 0%, var(--primary) 40%, var(--secondary) 60%, #ffffff 100%);
+    background: linear-gradient(to right, #ffffff 0%, var(--primary) 35%, var(--secondary) 65%, #ffffff 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -308,4 +309,4 @@ body {
     display: inline-block;
     animation: marquee 40s linear infinite;
     padding-left: 100%;
-}
+}

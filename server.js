@@ -117,8 +117,8 @@ app.post('/api/verify', async (req, res) => {
             confidence: Math.floor(Math.random() * 10) + (isFake ? 75 : 90),
             query: url,
             consensus: isFake
-                ? "Deep analysis complete. Searching across 11 major global nodes yielded NO verified cryptographic press results from the trusted portal list. Flagged as FAKE or UNVERIFIED."
-                : "Information corroborated by Authentic Primary Press Portals. Integrity verified.",
+                ? "VeriPulse forensic analysis complete. Cross-referencing against primary global intelligence registries yielded NO authenticated verification records. Flagged as DISINFORMATION or UNVERIFIED."
+                : "Information corroborated by Authentic Primary Press Portals. Integrity verified across VeriPulse sentinel nodes.",
             nodes: nodes,
             sourceDetail: isFake ? null : {
                 title: trustedHit.item.title || "Original Report Verified",
@@ -286,7 +286,7 @@ app.get('/api/latest-news', (req, res) => {
 
 if (require.main === module) {
     app.listen(PORT, () => {
-        console.log(`Trueview Backend Server running on http://localhost:${PORT}`);
+        console.log(`VeriPulse Backend Server running on http://localhost:${PORT}`);
     });
 }
 

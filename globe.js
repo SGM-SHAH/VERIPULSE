@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Wireframe Overlay
         const wireMaterial = new THREE.MeshBasicMaterial({
-            color: 0xff9f1c,
+            color: 0x06b6d4,
             wireframe: true,
             transparent: true,
             opacity: 0.15
@@ -55,9 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Grid/Atmosphere glow
         const glowMaterial = new THREE.MeshBasicMaterial({
-            color: 0x8b5cf6,
+            color: 0x0d9488,
             transparent: true,
-            opacity: 0.05,
+            opacity: 0.08,
             side: THREE.BackSide,
             blending: THREE.AdditiveBlending,
         });
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
         scene.add(ambientLight);
 
-        const pointLight = new THREE.PointLight(0xff9f1c, 2);
+        const pointLight = new THREE.PointLight(0x06b6d4, 2);
         pointLight.position.set(100, 100, 100);
         scene.add(pointLight);
 
@@ -137,10 +137,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(apiData => {
                     if (apiData && apiData.data) {
                         apiData.data.forEach(node => {
-                        apiData.data.forEach(node => {
                             const isFake = node.status === 'FAKE';
-                            const color = isFake ? 0xff3333 : 0x00ff88;
-                            const desc = node.desc || "Verified by decentralized nodes. Transparency valid.";
+                            const color = isFake ? 0xf43f5e : 0x10b981;
+                            const desc = node.desc || "Verified by VeriPulse decentralized nodes. Transparency valid.";
                             
                             // Add marker
                             const markerRing = addMarker(node.lat, node.lng, color, {
@@ -157,19 +156,18 @@ document.addEventListener("DOMContentLoaded", () => {
                             }
                             rings.push(markerRing);
                         });
-                        });
                     }
                 })
                 .catch(err => {
                     console.log("Could not load backend map nodes; ensure server is running.");
                     // Fallback dummy nodes if server is offline
-                    rings.push(addMarker(28.6, 77.2, 0xef4444, { title: "Protest Video Verification", desc: "Clips from early 2019 being shared as live. Consensus: FAKE.", status: "FAKE", auth: "Aajtak", loc: "New Delhi, IN" }));
-                    rings.push(addMarker(40.7, -74.0, 0x10b981, { title: "Stock Market Crash Rumors", desc: "AI generated charts circulating. Confirmed legitimate by SEC sources.", status: "TRUTH", auth: "Times of India", loc: "New York, US" }));
+                    rings.push(addMarker(28.6, 77.2, 0xf43f5e, { title: "Synthetic Broadcast Disinformation", desc: "Clips altered using neural voice synthesis. Consensus: FAKE.", status: "FAKE", auth: "VeriPulse Sentinel Delhi", loc: "New Delhi, IN" }));
+                    rings.push(addMarker(40.7, -74.0, 0x10b981, { title: "Clean Energy Infrastructure Milestone", desc: "Federal transmission registry verified. Full consensus corroborated.", status: "TRUTH", auth: "VeriPulse Sentinel NY", loc: "New York, US" }));
                 });
         } else {
             // Just random background dots
             for (let i = 0; i < 15; i++) {
-                rings.push(addMarker((Math.random() - 0.5) * 160, (Math.random() - 0.5) * 360, Math.random() > 0.5 ? 0xff9f1c : 0x8b5cf6, null));
+                rings.push(addMarker((Math.random() - 0.5) * 160, (Math.random() - 0.5) * 360, Math.random() > 0.5 ? 0x10b981 : 0x06b6d4, null));
             }
         }
 

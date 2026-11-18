@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trueview | Decentralized Verification</title>
+    <title>VeriPulse | Decentralized Fact Forensics & Narrative Integrity</title>
 
     <!-- Meta/SEO -->
     <meta name="description"
-        content="Decentralized News Verification Portal. Verify whether news is true or fake seamlessly.">
+        content="VeriPulse - Decentralized Fact Forensics & Narrative Integrity Platform. Detect disinformation, authenticate breaking claims, and inspect media tampering with multi-node cryptographic verification.">
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,12 +37,12 @@
             theme: {
                 extend: {
                     colors: {
-                        darkBase: '#02040a',
-                        darkSurface: '#0b0f19',
-                        brandPrimary: '#ff9f1c',
-                        brandSecondary: '#8b5cf6',
+                        darkBase: '#02070d',
+                        darkSurface: '#081420',
+                        brandPrimary: '#10b981',
+                        brandSecondary: '#06b6d4',
                         truth: '#10b981',
-                        fake: '#ef4444'
+                        fake: '#f43f5e'
                     },
                     animation: {
                         'shimmer': 'shimmer 2s infinite linear'
@@ -58,9 +58,10 @@
                         display: ['Oswald', 'sans-serif'],
                     },
                     boxShadow: {
-                        'neon': '0 0 20px rgba(255, 159, 28, 0.4)',
+                        'neon': '0 0 20px rgba(16, 185, 129, 0.4)',
+                        'neon-secondary': '0 0 20px rgba(6, 182, 212, 0.4)',
                         'neon-truth': '0 0 20px rgba(16, 185, 129, 0.4)',
-                        'neon-fake': '0 0 20px rgba(239, 68, 68, 0.4)'
+                        'neon-fake': '0 0 20px rgba(244, 63, 94, 0.4)'
                     }
                 }
             }
@@ -103,23 +104,25 @@
         class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none mix-blend-screen opacity-70"></canvas>
     <!-- Site Header -->
     <header
-        class="fixed w-full top-0 z-40 bg-darkBase/80 backdrop-blur-md border-b flex justify-between items-center border-slate-800/50 transition-all duration-300 py-4 px-6 md:px-12">
+        class="fixed w-full top-0 z-40 bg-darkBase/85 backdrop-blur-md border-b flex justify-between items-center border-emerald-950/40 transition-all duration-300 py-4 px-6 md:px-12">
         <a href="#" class="flex items-center gap-3 group">
             <div
                 class="w-10 h-10 rounded-lg bg-gradient-to-br from-brandPrimary to-brandSecondary flex items-center justify-center shadow-neon group-hover:scale-105 transition-transform">
-                <i class="fa-solid fa-shield text-darkBase text-xl"></i>
+                <i class="fa-solid fa-bolt text-darkBase text-lg"></i>
             </div>
-            <span class="font-display font-bold text-2xl tracking-widest text-white uppercase">True<span
-                    class="text-brandPrimary">view</span></span>
+            <span class="font-display font-bold text-2xl tracking-widest text-white uppercase">Veri<span
+                    class="text-brandPrimary">Pulse</span></span>
         </a>
 
         <nav class="hidden md:flex items-center gap-8 text-xs font-bold tracking-widest uppercase text-slate-400">
-            <a href="#verify" class="hover:text-brandPrimary transition-colors">Verify News</a>
-            <a href="#map-section" class="hover:text-brandPrimary transition-colors">Global Map</a>
-            <a href="#latest-news" class="hover:text-brandPrimary transition-colors">Latest News</a>
+            <a href="#verify" class="hover:text-brandPrimary transition-colors">Forensic Scan</a>
+            <a href="#pipeline" class="hover:text-brandPrimary transition-colors">Pipeline</a>
+            <a href="#map-section" class="hover:text-brandPrimary transition-colors">Planetary Radar</a>
+            <a href="#latest-news" class="hover:text-brandPrimary transition-colors">Intelligence Wire</a>
+            <a href="#leaderboard" class="hover:text-brandPrimary transition-colors">Impact</a>
             
-            <span id="auth-user-name" class="hidden text-brandPrimary font-bold tracking-widest uppercase"></span>
-            <button id="logout-btn" onclick="handleLogout()" class="hidden text-slate-500 hover:text-red-500 transition-colors uppercase">
+            <span id="auth-user-name" class="hidden text-brandPrimary font-bold tracking-widest uppercase font-mono"></span>
+            <button id="logout-btn" onclick="handleLogout()" class="hidden text-slate-500 hover:text-red-400 transition-colors uppercase font-mono text-xs">
                 Logout
             </button>
             <button id="login-btn" onclick="toggleLoginModal('login')" class="text-white hover:text-brandPrimary transition-colors uppercase font-bold text-sm">
@@ -127,15 +130,15 @@
             </button>
 
             <button id="signup-nav-btn" onclick="toggleLoginModal('signup')"
-                class="btn-primary !px-6 !py-2 !rounded-lg font-black uppercase tracking-widest text-sm transform hover:scale-105 transition-all flex items-center gap-2">
-                Sign Up
+                class="btn-primary !px-6 !py-2 !rounded-lg font-black uppercase tracking-widest text-xs transform hover:scale-105 transition-all flex items-center gap-2">
+                Join Network
             </button>
         </nav>
 
         <!-- Mobile Menu Button -->
         <div class="md:hidden flex items-center gap-4">
-            <span id="mobile-auth-name" class="hidden text-brandPrimary text-xs font-bold uppercase"></span>
-            <button id="mobile-logout-btn" class="hidden text-slate-500 hover:text-red-500" onclick="handleLogout()">
+            <span id="mobile-auth-name" class="hidden text-brandPrimary text-xs font-bold uppercase font-mono"></span>
+            <button id="mobile-logout-btn" class="hidden text-slate-500 hover:text-red-400" onclick="handleLogout()">
                 <i class="fa-solid fa-right-from-bracket"></i>
             </button>
             <button id="mobile-login-btn" class="text-white hover:text-brandPrimary" onclick="toggleLoginModal()">
@@ -147,7 +150,7 @@
     <!-- Login/Auth Modal -->
     <div id="login-modal"
         class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-darkBase border-2 border-slate-800 p-8 rounded-2xl w-full max-w-md shadow-2xl relative transform scale-95 transition-transform duration-300"
+        <div class="bg-darkBase border-2 border-emerald-950/80 p-8 rounded-2xl w-full max-w-md shadow-2xl relative transform scale-95 transition-transform duration-300"
             id="login-modal-content">
             <button onclick="toggleLoginModal()"
                 class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors">
@@ -155,60 +158,60 @@
             </button>
 
             <div class="mb-8 text-center" id="modal-header">
-                <h2 class="font-display font-black text-3xl uppercase tracking-widest text-white mb-2" id="modal-title">Trueview <span
-                        class="text-brandPrimary">System</span></h2>
-                <p class="text-xs font-mono tracking-widest text-slate-400 uppercase" id="modal-subtitle">Authenticate Your Node</p>
+                <h2 class="font-display font-black text-3xl uppercase tracking-widest text-white mb-2" id="modal-title">VeriPulse <span
+                        class="text-brandPrimary">Sentinel Grid</span></h2>
+                <p class="text-xs font-mono tracking-widest text-slate-400 uppercase" id="modal-subtitle">Authenticate Node Credentials</p>
             </div>
 
             <!-- Login Form -->
             <form id="login-form" class="space-y-5" onsubmit="handleLogin(event)">
                 <div>
-                    <label class="block text-xs font-mono tracking-widest uppercase text-slate-400 mb-2">Agent ID / Email</label>
+                    <label class="block text-xs font-mono tracking-widest uppercase text-slate-400 mb-2">Node Identifier / Email</label>
                     <input type="email" id="login-email" required
-                        class="w-full bg-darkSurface border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-brandPrimary transition-colors font-mono"
-                        placeholder="john@gmail.com">
+                        class="w-full bg-darkSurface border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-brandPrimary transition-colors font-mono text-sm"
+                        placeholder="agent@veripulse.network">
                 </div>
                 <div>
                     <label class="block text-xs font-mono tracking-widest uppercase text-slate-400 mb-2">Cryptographic Key / Password</label>
                     <input type="password" id="login-password" required
-                        class="w-full bg-darkSurface border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-brandPrimary transition-colors font-mono"
+                        class="w-full bg-darkSurface border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-brandPrimary transition-colors font-mono text-sm"
                         placeholder="••••••••">
                 </div>
                 <button type="submit"
                     class="w-full btn-primary text-darkBase font-bold uppercase tracking-widest py-4 rounded-lg mt-4 shadow-neon">
-                    LOGIN
+                    AUTHENTICATE NODE
                 </button>
                 <p class="text-[10px] text-center text-slate-500 uppercase tracking-widest mt-4">
-                    New user? <a href="javascript:void(0)" onclick="toggleLoginModal('signup')" class="text-brandPrimary">Create an account</a>
+                    New operator? <a href="javascript:void(0)" onclick="toggleLoginModal('signup')" class="text-brandPrimary hover:underline">Register Sentinel Key</a>
                 </p>
             </form>
 
             <!-- Signup Form -->
             <form id="signup-form" class="space-y-4 hidden" onsubmit="handleSignup(event)">
                 <div>
-                    <label class="block text-xs font-mono tracking-widest uppercase text-slate-400 mb-1">Full Name</label>
+                    <label class="block text-xs font-mono tracking-widest uppercase text-slate-400 mb-1">Operator Full Name</label>
                     <input type="text" id="signup-name" required
-                        class="w-full bg-darkSurface border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-brandPrimary transition-colors font-mono"
-                        placeholder="John Doe">
+                        class="w-full bg-darkSurface border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-brandPrimary transition-colors font-mono text-sm"
+                        placeholder="Elena Vance">
                 </div>
                 <div>
-                    <label class="block text-xs font-mono tracking-widest uppercase text-slate-400 mb-1">Work Email</label>
+                    <label class="block text-xs font-mono tracking-widest uppercase text-slate-400 mb-1">Node Contact Email</label>
                     <input type="email" id="signup-email" required
-                        class="w-full bg-darkSurface border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-brandPrimary transition-colors font-mono"
-                        placeholder="john@gmail.com">
+                        class="w-full bg-darkSurface border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-brandPrimary transition-colors font-mono text-sm"
+                        placeholder="agent@veripulse.network">
                 </div>
                 <div>
-                    <label class="block text-xs font-mono tracking-widest uppercase text-slate-400 mb-1">New Key / Password</label>
+                    <label class="block text-xs font-mono tracking-widest uppercase text-slate-400 mb-1">New Cryptographic Key</label>
                     <input type="password" id="signup-password" required
-                        class="w-full bg-darkSurface border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-brandPrimary transition-colors font-mono"
+                        class="w-full bg-darkSurface border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-brandPrimary transition-colors font-mono text-sm"
                         placeholder="••••••••">
                 </div>
                 <button type="submit"
                     class="w-full btn-primary text-darkBase font-bold uppercase tracking-widest py-4 rounded-lg mt-2 shadow-neon">
-                    REGISTER
+                    INITIALIZE SENTINEL
                 </button>
                 <p class="text-[10px] text-center text-slate-500 uppercase tracking-widest mt-4">
-                    Existing user? <a href="javascript:void(0)" onclick="toggleLoginModal('login')" class="text-brandPrimary">Login instead</a>
+                    Existing node? <a href="javascript:void(0)" onclick="toggleLoginModal('login')" class="text-brandPrimary hover:underline">Access terminal</a>
                 </p>
             </form>
         </div>
@@ -222,32 +225,32 @@
                 <!-- Text Container (Left side) -->
                 <div class="w-full lg:w-[55%] flex flex-col justify-center items-start text-left">
                     <div
-                        class="inline-flex items-center gap-2 mb-8 fade-up text-brandPrimary font-mono font-bold tracking-widest text-xs uppercase opacity-80 border-l-2 border-brandPrimary px-4">
-                        Decentralized Verification Protocol
+                        class="inline-flex items-center gap-2 mb-8 fade-up text-brandPrimary font-mono font-bold tracking-widest text-xs uppercase opacity-90 border-l-2 border-brandPrimary px-4">
+                        <i class="fa-solid fa-bolt mr-1"></i> Decentralized Narrative Forensics Protocol
                     </div>
 
-                    <!-- Huge Typography matching the style requested -->
+                    <!-- Huge Typography -->
                     <h1
                         class="text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] font-sans font-black text-white leading-[0.9] mb-8 fade-up uppercase tracking-normal elite-headline">
-                        DECODING <br />
-                        REALITY, <br />
+                        PROVING <br />
+                        TRUTH, <br />
                         <span
-                            class="tech-accent">EXPOSING
+                            class="tech-accent">NEUTRALIZING
                             DECEPTION.</span><br />
                     </h1>
 
                     <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl fade-up leading-relaxed font-light">
-                        Trueview is a high-precision decentralized narrative validator. We analyze global media streams, cross-examine database entries, and verify facts via cryptographic nodes.
+                        VeriPulse is an autonomous decentralized intelligence network. We cross-examine global media broadcasts, monitor synthetic manipulation, and cryptographically attest source integrity.
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center gap-6 fade-up">
                         <a href="#verify"
-                            class="btn-primary flex items-center justify-center gap-3 w-full sm:w-auto">
-                            <i class="fa-solid fa-magnifying-glass"></i> Verify Article Now
+                            class="btn-primary flex items-center justify-center gap-3 w-full sm:w-auto shadow-neon">
+                            <i class="fa-solid fa-magnifying-glass"></i> Audit Article Now
                         </a>
                         <a href="#map-section"
-                            class="bg-transparent border border-slate-700 text-white text-sm font-bold uppercase tracking-widest px-8 py-4 rounded-full flex items-center justify-center gap-3 hover:bg-slate-800 transition-colors w-full sm:w-auto">
-                            Explore Globe
+                            class="bg-transparent border border-emerald-900/60 text-white text-sm font-bold uppercase tracking-widest px-8 py-4 rounded-full flex items-center justify-center gap-3 hover:bg-emerald-950/40 hover:border-brandPrimary transition-all w-full sm:w-auto">
+                            <i class="fa-solid fa-globe"></i> Planetary Radar
                         </a>
                     </div>
                 </div>
@@ -262,15 +265,15 @@
         </section>
 
         <!-- Verification Tool Section -->
-        <section id="verify" class="py-24 relative bg-darkBase/90 border-t border-slate-800/80">
+        <section id="verify" class="py-24 relative bg-darkBase/90 border-t border-emerald-950/50">
             <div class="max-w-5xl mx-auto px-6">
                 <div class="mb-1 text-center">
                     <h2 class="text-4xl md:text-5xl font-sans font-black text-white mb-4 tracking-tighter uppercase reveal">
-                        Verification <span class="text-brandPrimary">Engine</span></h2>
-                    <p class="text-slate-400 text-lg reveal">Input news links or active media claims to run deep-scan integrity verification.</p>
+                        Forensic <span class="text-brandPrimary">Scanner</span></h2>
+                    <p class="text-slate-400 text-lg reveal">Input news links, headlines, or active media claims to run multi-node integrity audits.</p>
                 </div>
 
-                <!-- Actual Scan Interface (Tucked behind tabs) -->
+                <!-- Actual Scan Interface -->
                 <div class="mt-20">
 
                     <div class="glass-card p-6 md:p-12 reveal">
@@ -278,16 +281,15 @@
                         <div id="url-scan-content">
                             <form id="verify-form" class="relative">
                                 <div class="relative flex items-center group">
-                                    <input type="text" id="news-url" placeholder="Paste news article URL or claim here..."
-                                        class="w-full bg-darkBase border-2 border-slate-800 text-white rounded-xl py-6 pl-8 pr-40 focus:outline-none focus:border-brandPrimary transition-colors text-lg font-mono">
+                                    <input type="text" id="news-url" placeholder="Paste news article URL or enter viral claim for forensic analysis..."
+                                        class="w-full bg-darkBase border-2 border-slate-800 text-white rounded-xl py-6 pl-8 pr-44 focus:outline-none focus:border-brandPrimary transition-colors text-lg font-mono">
                                     <button type="submit"
                                         class="absolute right-3 btn-primary !py-3 !px-6 !rounded-lg flex items-center gap-2">
-                                        Scan Now
+                                        <i class="fa-solid fa-radar"></i> Audit Claim
                                     </button>
                                 </div>
                             </form>
                         </div>
-
 
                         <!-- Result Display -->
                         <div id="verify-loading" class="hidden mt-12 flex flex-col items-center justify-center py-10">
@@ -295,7 +297,7 @@
                                 <div class="absolute inset-0 border-t-2 border-brandPrimary rounded-full animate-spin"></div>
                                 <div class="absolute inset-2 border-l-2 border-brandSecondary rounded-full animate-spin-reverse"></div>
                             </div>
-                            <p id="loading-text" class="animate-pulse text-brandPrimary font-mono text-sm tracking-widest uppercase">Connecting to verification databases...</p>
+                            <p id="loading-text" class="animate-pulse text-brandPrimary font-mono text-sm tracking-widest uppercase">Connecting to VeriPulse forensic databases...</p>
                         </div>
 
                         <div id="verify-result" class="hidden mt-10">
@@ -303,87 +305,86 @@
                         </div>
                     </div>
                 </div>
-                <!-- End Suite -->
             </div>
         </section>
 
         <!-- How It Works Pipeline -->
-        <section class="py-24 relative overflow-hidden bg-darkSurface/30 border-y border-slate-800/10">
+        <section id="pipeline" class="py-24 relative overflow-hidden bg-darkSurface/30 border-y border-emerald-950/30">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-16 reveal">
-                    <h2 class="text-xs font-mono text-brandPrimary tracking-[0.5em] uppercase mb-4">Verification Intelligence Pipeline</h2>
-                    <h3 class="text-4xl md:text-5xl font-sans font-black text-white uppercase tracking-tighter">How We <span class="text-slate-500">Confirm The Facts</span></h3>
+                    <h2 class="text-xs font-mono text-brandPrimary tracking-[0.5em] uppercase mb-4">Forensic Intelligence Pipeline</h2>
+                    <h3 class="text-4xl md:text-5xl font-sans font-black text-white uppercase tracking-tighter">How VeriPulse <span class="text-slate-500">Validates The Facts</span></h3>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <!-- Step 1 -->
                     <div class="glass-card p-8 group reveal">
-                        <div class="text-4xl font-black text-brandPrimary/20 mb-6 group-hover:text-brandPrimary/40 transition-colors font-mono">01</div>
-                        <i class="fa-solid fa-link text-brandPrimary text-2xl mb-4"></i>
-                        <h4 class="text-white font-bold uppercase tracking-tight mb-2">Source Check</h4>
-                        <p class="text-sm text-slate-500 leading-relaxed">System receives URL or news snippet for cross-referencing with our databases.</p>
+                        <div class="text-4xl font-black text-brandPrimary/25 mb-6 group-hover:text-brandPrimary/50 transition-colors font-mono">01</div>
+                        <i class="fa-solid fa-satellite-dish text-brandPrimary text-2xl mb-4"></i>
+                        <h4 class="text-white font-bold uppercase tracking-tight mb-2">Signal Ingestion</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">Raw claim snippets, wire reports, and reference URLs are ingested across sentinel node entry points.</p>
                     </div>
                     <!-- Step 2 -->
                     <div class="glass-card p-8 group reveal">
-                        <div class="text-4xl font-black text-brandPrimary/20 mb-6 group-hover:text-brandPrimary/40 transition-colors font-mono">02</div>
-                        <i class="fa-solid fa-microchip text-brandPrimary text-2xl mb-4"></i>
-                        <h4 class="text-white font-bold uppercase tracking-tight mb-2">AI Analysis</h4>
-                        <p class="text-sm text-slate-500 leading-relaxed">Advanced analysis scans for semantic patterns and potential AI manipulation.</p>
+                        <div class="text-4xl font-black text-brandSecondary/25 mb-6 group-hover:text-brandSecondary/50 transition-colors font-mono">02</div>
+                        <i class="fa-solid fa-microchip text-brandSecondary text-2xl mb-4"></i>
+                        <h4 class="text-white font-bold uppercase tracking-tight mb-2">Semantic Forensics</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">Neural parsing models detect synthetic alterations, emotional bait, and structural discrepancies.</p>
                     </div>
                     <!-- Step 3 -->
                     <div class="glass-card p-8 group reveal border-fake/30">
-                        <div class="text-4xl font-black text-fake/20 mb-6 group-hover:text-fake/40 transition-colors font-mono">03</div>
-                        <i class="fa-solid fa-users text-fake text-2xl mb-4"></i>
-                        <h4 class="text-white font-bold uppercase tracking-tight mb-2">Community Review</h4>
-                        <p class="text-sm text-slate-500 leading-relaxed">News is cross-verified by thousands of specialized fact-checkers globally.</p>
+                        <div class="text-4xl font-black text-fake/25 mb-6 group-hover:text-fake/50 transition-colors font-mono">03</div>
+                        <i class="fa-solid fa-shield-virus text-fake text-2xl mb-4"></i>
+                        <h4 class="text-white font-bold uppercase tracking-tight mb-2">Consensus Swarm</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">Dispatches are cross-examined against hundreds of authoritative fact-checking registries.</p>
                     </div>
                     <!-- Step 4 -->
                     <div class="glass-card p-8 group reveal border-truth/30">
-                        <div class="text-4xl font-black text-truth/20 mb-6 group-hover:text-truth/40 transition-colors font-mono">04</div>
-                        <i class="fa-solid fa-file-shield text-truth text-2xl mb-4"></i>
-                        <h4 class="text-white font-bold uppercase tracking-tight mb-2">Final Verdict</h4>
-                        <p class="text-sm text-slate-500 leading-relaxed">Final results are added to our registry and highlighted on the impact map.</p>
+                        <div class="text-4xl font-black text-truth/25 mb-6 group-hover:text-truth/50 transition-colors font-mono">04</div>
+                        <i class="fa-solid fa-fingerprint text-truth text-2xl mb-4"></i>
+                        <h4 class="text-white font-bold uppercase tracking-tight mb-2">Cryptographic Verdict</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">Consensus ratings are cryptographically attested and plotted on the live planetary grid.</p>
                     </div>
                 </div>
             </div>
         </section>
+
         <!-- Live Intelligence Leaflet Map -->
-        <section id="map-section" class="py-24 relative overflow-hidden bg-darkSurface/50 border-t border-slate-800/50">
+        <section id="map-section" class="py-24 relative overflow-hidden bg-darkSurface/50 border-t border-emerald-950/40">
             <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-6">
                 <!-- Data Intelligence Panel -->
                 <div class="w-full lg:w-2/5 reveal flex flex-col items-center">
                     <h2
                         class="text-4xl md:text-5xl font-sans font-black text-white mb-6 uppercase tracking-tighter leading-none text-center">
-                        Live Global<br /><span class="text-brandPrimary">Intelligence</span></h2>
+                        Live Planetary<br /><span class="text-brandPrimary">Radar</span></h2>
                     <p class="text-slate-400 mb-8 leading-relaxed text-sm text-center mx-auto max-w-sm">
-                        A high-fidelity global monitor detecting trending disinformation, AI-generated hoaxes, and 
-                        corroborated news drops across our decentralized intelligence network in real-time.
+                        A real-time geospatial intelligence monitor detecting viral disinformation clusters, synthetic media leaks, and verified factual events across decentralized sentinels.
                     </p>
                     <div class="space-y-4 w-full max-w-xs">
                         <div class="flex items-center gap-4 bg-darkBase p-4 border-l-2 border-fake shadow-neon-fake group hover:bg-fake/5 transition-colors">
-                            <i class="fa-solid fa-satellite-dish text-fake text-xl group-hover:animate-pulse"></i>
+                            <i class="fa-solid fa-triangle-exclamation text-fake text-xl group-hover:animate-pulse"></i>
                             <div>
-                                <h4 class="text-white font-mono text-[10px] uppercase tracking-widest">FAKE NEWS DETECTED</h4>
-                                <p class="text-[9px] text-slate-500 uppercase">Unverified Claims Spread</p>
+                                <h4 class="text-white font-mono text-[10px] uppercase tracking-widest">DISINFORMATION DETECTED</h4>
+                                <p class="text-[9px] text-slate-500 uppercase">Unverified Narrative Clusters</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4 bg-darkBase p-4 border-l-2 border-truth shadow-neon-truth group hover:bg-truth/5 transition-colors">
                             <i class="fa-solid fa-shield-check text-truth text-xl"></i>
                             <div>
                                 <h4 class="text-white font-mono text-[10px] uppercase tracking-widest">VERIFIED TRUTH DROP</h4>
-                                <p class="text-[9px] text-slate-500 uppercase">Backed by Trusted Authorities</p>
+                                <p class="text-[9px] text-slate-500 uppercase">Corroborated by Primary Press</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Live Alert Feed -->
                     <div class="mt-8 glass-card p-6 relative overflow-hidden reveal w-full max-w-sm">
-                        <div class="absolute top-0 right-0 p-2 text-[10px] font-mono text-fake animate-pulse tracking-widest uppercase">Live Link Active</div>
+                        <div class="absolute top-0 right-0 p-2 text-[10px] font-mono text-fake animate-pulse tracking-widest uppercase">Telemetry Active</div>
                         <h4 class="text-xs font-mono text-fake tracking-widest uppercase mb-4 flex items-center gap-2">
-                           <i class="fa-solid fa-radar"></i> Suspect Activity Monitor
+                           <i class="fa-solid fa-satellite-dish"></i> Suspect Activity Telemetry
                         </h4>
                         <div id="live-map-alerts" class="space-y-4 max-h-[160px] overflow-y-auto pr-2 custom-scrollbar">
-                           <div class="text-xs text-slate-500 font-mono italic">Synchronizing Global Nodes...</div>
+                           <div class="text-xs text-slate-500 font-mono italic">Synchronizing Planetary Nodes...</div>
                         </div>
                     </div>
                 </div>
@@ -395,8 +396,8 @@
 
                     <!-- Globe Context Popup (Bulma Styled) -->
                     <div id="map-popup" class="card is-hidden"
-                        style="position:absolute; top:1rem; left:1rem; width:320px; z-index:50; background-color: rgba(11, 15, 25, 0.95); box-shadow: 0 0.5em 1em -0.125em rgba(0,0,0, 0.9); border: 1px solid #1e293b; border-radius: 8px; overflow: hidden;">
-                        <header class="card-header" style="border-bottom: 1px solid #1e293b; box-shadow: none;">
+                        style="position:absolute; top:1rem; left:1rem; width:320px; z-index:50; background-color: rgba(8, 20, 32, 0.95); box-shadow: 0 0.5em 1em -0.125em rgba(0,0,0, 0.9); border: 1px solid #064e3b; border-radius: 8px; overflow: hidden;">
+                        <header class="card-header" style="border-bottom: 1px solid #064e3b; box-shadow: none;">
                             <p class="card-header-title has-text-white is-size-6 is-uppercase" id="map-popup-title"
                                 style="font-family: 'Inter', sans-serif; font-weight: 900; margin-bottom: 0;">
                                 Protest Video Verification
@@ -410,7 +411,7 @@
                                 style="font-family: 'Inter', sans-serif;">
                                 Clips from early 2019 being shared as live. Consensus: FAKE.
                             </div>
-                            <div class="mt-4 pt-3" style="border-top: 1px solid #1e293b;">
+                            <div class="mt-4 pt-3" style="border-top: 1px solid #064e3b;">
                                 <div class="is-flex is-justify-content-space-between is-align-items-center mb-1">
                                     <span class="has-text-grey is-size-7 is-family-monospace"
                                         style="font-weight: 600;">LOCATION</span>
@@ -421,7 +422,7 @@
                                     <span class="has-text-grey is-size-7 is-family-monospace"
                                         style="font-weight: 600;">VERIFIED BY</span>
                                     <span id="map-popup-authority" class="has-text-info is-size-7 is-family-monospace"
-                                        style="color: #ff9f1c !important;">Aajtak Node</span>
+                                        style="color: #10b981 !important;">VeriPulse Sentinel</span>
                                 </div>
                             </div>
                         </div>
@@ -432,17 +433,17 @@
         </section>
 
         <!-- Latest News Feed -->
-        <section id="latest-news" class="py-24 bg-darkBase relative border-t border-slate-800/50">
+        <section id="latest-news" class="py-24 bg-darkBase relative border-t border-emerald-950/40">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
                     <div>
                         <h2
                             class="text-4xl md:text-6xl font-sans font-black text-white tracking-tighter uppercase mb-2">
-                            Verified News Feed</h2>
-                        <p class="text-slate-400">The latest claims passing through our decentralized portal.</p>
+                            Verified Intelligence Wire</h2>
+                        <p class="text-slate-400">The latest claims and viral dispatches resolved through our decentralized sentinel grid.</p>
                     </div>
                     <a href="javascript:void(0)" id="view-full-archive"
-                        class="text-brandPrimary hover:text-white transition-colors text-sm font-mono tracking-widest uppercase flex items-center gap-2">View
+                        class="text-brandPrimary hover:text-white transition-colors text-sm font-mono tracking-widest uppercase flex items-center gap-2">Access
                         Full Archive <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
@@ -453,74 +454,72 @@
         </section>
 
         <!-- Our Impact Section -->
-        <section id="leaderboard" class="py-32 relative overflow-hidden bg-brandPrimary border-t border-slate-800/30">
+        <section id="leaderboard" class="py-32 relative overflow-hidden bg-gradient-to-r from-emerald-950/80 via-teal-950/70 to-emerald-950/80 border-t border-emerald-500/20">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-20 reveal">
                     <h2 class="text-4xl md:text-5xl font-sans font-black text-white tracking-tighter uppercase mb-4">
-                        Trueview Impact Center</h2>
-                    <p class="text-white/70 max-w-2xl mx-auto text-lg font-light">Real-time analytical metrics reflecting network integrity and global consensus reports.</p>
+                        VeriPulse Impact Center</h2>
+                    <p class="text-white/70 max-w-2xl mx-auto text-lg font-light">Real-time analytical telemetry reflecting network consensus and forensic integrity.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8 reveal">
                     <!-- Metric 1 -->
-                    <div class="glass-card bg-white/10 p-12 flex flex-col items-center text-center group hover:bg-white/20 transition-all border-white/20">
-                        <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-8 border border-white/30 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-users-viewfinder text-white text-3xl"></i>
+                    <div class="glass-card bg-white/5 p-12 flex flex-col items-center text-center group hover:bg-white/10 transition-all border-emerald-500/20">
+                        <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mb-8 border border-emerald-400/30 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-network-wired text-brandPrimary text-3xl"></i>
                         </div>
                         <div class="text-5xl font-black text-white tracking-tighter mb-2 tabular-nums counter" data-target="8412">0</div>
-                        <p class="text-xs font-black text-white/60 uppercase tracking-widest">Active Factcheckers</p>
+                        <p class="text-xs font-black text-emerald-300/80 uppercase tracking-widest">Active Sentinel Nodes</p>
                     </div>
                     <!-- Metric 2 -->
-                    <div class="glass-card bg-white/10 p-12 flex flex-col items-center text-center group hover:bg-white/20 transition-all border-white/20">
-                        <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-8 border border-white/30 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-shield-heart text-white text-3xl"></i>
+                    <div class="glass-card bg-white/5 p-12 flex flex-col items-center text-center group hover:bg-white/10 transition-all border-emerald-500/20">
+                        <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mb-8 border border-emerald-400/30 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-shield-halved text-brandPrimary text-3xl"></i>
                         </div>
                         <div class="text-5xl font-black text-white tracking-tighter mb-2 tabular-nums counter" data-target="32841">0</div>
-                        <p class="text-xs font-black text-white/60 uppercase tracking-widest">Claims Verified</p>
+                        <p class="text-xs font-black text-emerald-300/80 uppercase tracking-widest">Claims Attested</p>
                     </div>
                     <!-- Metric 3 -->
-                    <div class="glass-card bg-white/10 p-12 flex flex-col items-center text-center group hover:bg-white/20 transition-all border-white/20">
-                        <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-8 border border-white/30 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-earth-asia text-white text-3xl"></i>
+                    <div class="glass-card bg-white/5 p-12 flex flex-col items-center text-center group hover:bg-white/10 transition-all border-emerald-500/20">
+                        <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mb-8 border border-emerald-400/30 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-earth-americas text-brandPrimary text-3xl"></i>
                         </div>
                         <div class="text-5xl font-black text-white tracking-tighter mb-2 tabular-nums counter" data-target="74">0</div>
-                        <p class="text-xs font-black text-white/60 uppercase tracking-widest">Countries Reached</p>
+                        <p class="text-xs font-black text-emerald-300/80 uppercase tracking-widest">Sectors Monitored</p>
                     </div>
                     <!-- Metric 4 -->
-                    <div class="glass-card bg-white/10 p-12 flex flex-col items-center text-center group hover:bg-white/20 transition-all border-white/20">
-                        <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-8 border border-white/30 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-percent text-white text-3xl"></i>
+                    <div class="glass-card bg-white/5 p-12 flex flex-col items-center text-center group hover:bg-white/10 transition-all border-emerald-500/20">
+                        <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mb-8 border border-emerald-400/30 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-chart-line text-brandPrimary text-3xl"></i>
                         </div>
                         <div class="text-5xl font-black text-white tracking-tighter mb-2 tabular-nums counter" data-target="96">0</div>
-                        <p class="text-xs font-black text-white/60 uppercase tracking-widest">Accuracy Precision</p>
+                        <p class="text-xs font-black text-emerald-300/80 uppercase tracking-widest">Consensus Precision</p>
                     </div>
                 </div>
-             <!-- Expert directory/chat completely removed -->>
             </div>
-        </div>
+        </section>
 
     </main>
 
-    <footer class="bg-darkBase py-12 border-t border-slate-800">
+    <footer class="bg-darkBase py-12 border-t border-emerald-950/40">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <div class="mb-6 flex justify-center items-center gap-2">
-                <i class="fa-solid fa-shield text-brandPrimary text-2xl"></i>
+                <i class="fa-solid fa-bolt text-brandPrimary text-2xl"></i>
             </div>
-            <h2 class="font-display font-black text-3xl uppercase tracking-widest text-slate-700 mb-6">Trueview</h2>
-            <p class="text-slate-500 text-sm font-mono tracking-wider mb-6">
-                A decentralized portal verifying reality through the Trueview engine. Partnered with leading news organizations to stop the spread
-                of fake news.
+            <h2 class="font-display font-black text-3xl uppercase tracking-widest text-slate-300 mb-6">Veri<span class="text-brandPrimary">Pulse</span></h2>
+            <p class="text-slate-400 text-sm font-mono tracking-wider mb-6 max-w-2xl mx-auto">
+                An autonomous decentralized intelligence network verifying reality through the VeriPulse forensic engine. Interfacing with global press authorities to neutralize synthetic misinformation.
             </p>
             <div class="flex justify-center gap-6 mb-8">
-                <span class="text-slate-600 hover:text-white cursor-pointer transition"><i
+                <span class="text-slate-500 hover:text-brandPrimary cursor-pointer transition"><i
                         class="fa-brands fa-twitter"></i></span>
-                <span class="text-slate-600 hover:text-white cursor-pointer transition"><i
+                <span class="text-slate-500 hover:text-brandPrimary cursor-pointer transition"><i
                         class="fa-brands fa-github"></i></span>
-                <span class="text-slate-600 hover:text-white cursor-pointer transition"><i
+                <span class="text-slate-500 hover:text-brandPrimary cursor-pointer transition"><i
                         class="fa-brands fa-discord"></i></span>
             </div>
-            <p class="text-slate-700 text-xs text-center font-mono">
-                &copy; 2026 Trueview Portal. All verifications are cryptographically signed.
+            <p class="text-slate-600 text-xs text-center font-mono">
+                &copy; 2026 VeriPulse Network. All verifications are cryptographically signed.
             </p>
         </div>
     </footer>

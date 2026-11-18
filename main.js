@@ -150,13 +150,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (mode === 'signup') {
                 loginForm.classList.add('hidden');
                 signupForm.classList.remove('hidden');
-                title.innerHTML = `Trueview <span class="text-brandPrimary">Registry</span>`;
-                subtitle.textContent = "Create New User Account";
+                title.innerHTML = `VeriPulse <span class="text-brandPrimary">Registry</span>`;
+                subtitle.textContent = "Register Sentinel Node";
             } else {
                 loginForm.classList.remove('hidden');
                 signupForm.classList.add('hidden');
-                title.innerHTML = `Trueview <span class="text-brandPrimary">System</span>`;
-                subtitle.textContent = "Authenticate Your Account";
+                title.innerHTML = `VeriPulse <span class="text-brandPrimary">Sentinel Grid</span>`;
+                subtitle.textContent = "Authenticate Node Credentials";
             }
 
             setTimeout(() => {
@@ -171,14 +171,14 @@ document.addEventListener("DOMContentLoaded", () => {
             if (mode === 'signup' && signupForm.classList.contains('hidden')) {
                 loginForm.classList.add('hidden');
                 signupForm.classList.remove('hidden');
-                title.innerHTML = `Trueview <span class="text-brandPrimary">Registry</span>`;
-                subtitle.textContent = "Create New User Account";
+                title.innerHTML = `VeriPulse <span class="text-brandPrimary">Registry</span>`;
+                subtitle.textContent = "Register Sentinel Node";
                 return;
             } else if (mode === 'login' && loginForm.classList.contains('hidden')) {
                 loginForm.classList.remove('hidden');
                 signupForm.classList.add('hidden');
-                title.innerHTML = `Trueview <span class="text-brandPrimary">System</span>`;
-                subtitle.textContent = "Authenticate Your Account";
+                title.innerHTML = `VeriPulse <span class="text-brandPrimary">Sentinel Grid</span>`;
+                subtitle.textContent = "Authenticate Node Credentials";
                 return;
             }
 
@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // User Authentication State
     // ----------------------------------------------------
     const checkLoginState = () => {
-        const username = localStorage.getItem('trueview_agent_name');
+        const username = localStorage.getItem('veripulse_agent_name') || localStorage.getItem('trueview_agent_name');
 
         const loginBtn = document.getElementById('login-btn');
         const signupBtn = document.getElementById('signup-nav-btn');
@@ -213,12 +213,12 @@ document.addEventListener("DOMContentLoaded", () => {
             if (signupBtn) signupBtn.classList.add('hidden');
             if (authName) { 
                 authName.classList.remove('hidden'); 
-                authName.textContent = `USER: ${username}`; 
+                authName.textContent = `OPERATOR: ${username}`; 
             }
             if (logoutBtn) logoutBtn.classList.remove('hidden');
 
             if (mobileLoginBtn) mobileLoginBtn.classList.add('hidden');
-            if (mobileAuthName) { mobileAuthName.classList.remove('hidden'); mobileAuthName.textContent = `USER: ${username}`; }
+            if (mobileAuthName) { mobileAuthName.classList.remove('hidden'); mobileAuthName.textContent = `OPERATOR: ${username}`; }
             if (mobileLogoutBtn) mobileLogoutBtn.classList.remove('hidden');
         } else {
             if (loginBtn) loginBtn.classList.remove('hidden');
@@ -245,19 +245,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = passwordInput.value;
         
         // Check registration
-        const registeredUsers = JSON.parse(localStorage.getItem('trueview_registered_users') || '[]');
+        const registeredUsers = JSON.parse(localStorage.getItem('veripulse_registered_users') || localStorage.getItem('trueview_registered_users') || '[]');
         const userMatch = registeredUsers.find(u => u.email === email);
 
         if (userMatch) {
             if (userMatch.password === password) {
-                localStorage.setItem('trueview_agent_name', userMatch.name.toUpperCase());
+                localStorage.setItem('veripulse_agent_name', userMatch.name.toUpperCase());
                 checkLoginState();
                 window.toggleLoginModal();
             } else {
                 alert("Incorrect password for this email. Please try again.");
             }
         } else {
-            alert("No account found with this email. Please sign up first.");
+            alert("No account found with this email. Please register your sentinel node first.");
         }
     };
 
@@ -272,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const email = emailInput.value.trim().toLowerCase();
             const password = passwordInput.value;
 
-            const registeredUsers = JSON.parse(localStorage.getItem('trueview_registered_users') || '[]');
+            const registeredUsers = JSON.parse(localStorage.getItem('veripulse_registered_users') || localStorage.getItem('trueview_registered_users') || '[]');
             
             // Check if user exists
             if (registeredUsers.some(u => u.email === email)) {
@@ -283,10 +283,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Register
             registeredUsers.push({ name, email, password });
-            localStorage.setItem('trueview_registered_users', JSON.stringify(registeredUsers));
+            localStorage.setItem('veripulse_registered_users', JSON.stringify(registeredUsers));
             
             // Log in as new user
-            localStorage.setItem('trueview_agent_name', name.toUpperCase());
+            localStorage.setItem('veripulse_agent_name', name.toUpperCase());
             
             checkLoginState();
             window.toggleLoginModal();
@@ -294,6 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     window.handleLogout = () => {
+        localStorage.removeItem('veripulse_agent_name');
         localStorage.removeItem('trueview_agent_name');
         checkLoginState();
     };
@@ -381,14 +382,14 @@ document.addEventListener("DOMContentLoaded", () => {
                             <!-- Background Cyber Hilus (Shows while loading or on error) -->
                             <div class="absolute w-16 h-16 rounded-full border-2 border-t-transparent border-brandPrimary animate-spin" style="animation-duration: 3s; z-index: 0;"></div>
                             <div class="absolute w-12 h-12 rounded-full border-2 border-b-transparent border-truth animate-spin" style="animation-duration: 1.5s; animation-direction: reverse; z-index: 0;"></div>
-                            <div class="absolute w-4 h-4 rounded-full bg-brandPrimary/40 flex items-center justify-center shadow-[0_0_15px_#ff9f1c] animate-pulse z-0"></div>
+                            <div class="absolute w-4 h-4 rounded-full bg-brandPrimary/40 flex items-center justify-center shadow-[0_0_15px_#10b981] animate-pulse z-0"></div>
 
                             <!-- Real Image. Hides itself if broken, revealing the hilus -->
                             <img src="${data.sourceDetail.img}" alt="News Event Evidence" class="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-300" referrerpolicy="no-referrer" onerror="this.style.opacity='0';">
                             
                             <div class="absolute inset-0 bg-brandPrimary/10 mix-blend-overlay z-20 pointer-events-none"></div>
                             <!-- Scanning Laser -->
-                            <div class="absolute top-0 left-0 w-full h-0.5 bg-brandPrimary/60 shadow-[0_0_15px_#ff9f1c] transform animate-shimmer origin-left z-30 pointer-events-none"></div>
+                            <div class="absolute top-0 left-0 w-full h-0.5 bg-brandPrimary/70 shadow-[0_0_15px_#10b981] transform animate-shimmer origin-left z-30 pointer-events-none"></div>
 
                             <!-- POPPING TICK OVERLAY -->
                             <div class="absolute inset-0 flex items-center justify-center z-40 pointer-events-none">
@@ -403,8 +404,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>
                             <h4 class="text-white font-sans text-xl font-black mb-1 uppercase tracking-tight">${data.sourceDetail.title}</h4>
                             <p class="text-slate-400 text-sm mb-4">Official report verified by <span class="text-brandPrimary font-bold">${data.sourceDetail.portalName}</span>.</p>
-                            <a href="${data.sourceDetail.url}" target="_blank" class="inline-flex items-center justify-center bg-darkBase border border-slate-600 text-slate-300 hover:bg-brandPrimary hover:text-darkBase hover:border-brandPrimary transition-all px-6 py-2.5 font-mono text-xs font-bold uppercase tracking-widest rounded shadow-[0_0_15px_rgba(0,210,255,0.1)] hover:shadow-[0_0_20px_rgba(0,210,255,0.4)] w-full md:w-auto">
-                                View Original Article <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+                            <a href="${data.sourceDetail.url}" target="_blank" class="inline-flex items-center justify-center bg-darkBase border border-emerald-900/60 text-slate-300 hover:bg-brandPrimary hover:text-darkBase hover:border-brandPrimary transition-all px-6 py-2.5 font-mono text-xs font-bold uppercase tracking-widest rounded shadow-[0_0_15px_rgba(16,185,129,0.15)] hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] w-full md:w-auto">
+                                View Original Report <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
                             </a>
                         </div>
                     </div>
@@ -416,22 +417,22 @@ document.addEventListener("DOMContentLoaded", () => {
                         <!-- Status Badge -->
                         <div class="flex flex-col items-center gap-4 w-full md:w-1/3">
                             <div class="w-32 h-32 rounded flex items-center justify-center border-4 ${isFake ? 'border-fake shadow-neon-fake text-fake' : 'border-truth shadow-neon-truth text-truth'} bg-darkBase overflow-hidden">
-                                <i class="fa-solid ${isFake ? 'fa-triangle-exclamation' : 'fa-check'} text-5xl animate-pop-in"></i>
+                                <i class="fa-solid ${isFake ? 'fa-triangle-exclamation' : 'fa-shield-check'} text-5xl animate-pop-in"></i>
                             </div>
                             <h3 class="text-3xl font-sans font-black tracking-tighter uppercase ${isFake ? 'text-fake' : 'text-truth'} text-center leading-none">
-                                ${isFake ? 'FAKE NEWS DETECTED' : 'VERIFIED TRUTH'}
+                                ${isFake ? 'DISINFORMATION DETECTED' : 'VERIFIED TRUTH'}
                             </h3>
                             <div class="text-center mt-2">
                                 <span class="text-4xl font-mono text-white">${data.confidence}%</span>
                                 <span class="text-xs text-slate-500 uppercase block tracking-widest mt-1">Consensus Rating</span>
                             </div>
-                            <button onclick="resetVerify()" class="mt-4 btn-primary !text-xs !px-6 !py-3">Query Again</button>
+                            <button onclick="resetVerify()" class="mt-4 btn-primary !text-xs !px-6 !py-3">Audit Another Claim</button>
                         </div>
                         
                         <!-- Details -->
                         <div class="flex-1 w-full space-y-6">
                             <div class="bg-darkBase rounded p-5 border border-slate-800 border-l-4 ${isFake ? 'border-l-fake' : 'border-l-truth'}">
-                                <h4 class="text-white font-mono text-sm tracking-widest uppercase mb-2">Automated Report</h4>
+                                <h4 class="text-white font-mono text-sm tracking-widest uppercase mb-2">Automated Forensic Report</h4>
                                 <p class="text-sm text-slate-400 mb-2 font-mono">Query: "${data.query}"</p>
                                 <p class="text-white font-light text-lg">${data.consensus}</p>
                             </div>
@@ -443,7 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             ${sourceHtml}
 
                             <div class="bg-darkBase/50 border border-slate-800/50 rounded px-4 py-3 mt-4 flex items-center justify-between">
-                                <span class="text-xs text-slate-500 font-mono">CRYPTOGRAPHIC HASH</span>
+                                <span class="text-xs text-slate-500 font-mono">CRYPTOGRAPHIC ATTESTATION HASH</span>
                                 <span class="text-xs text-brandSecondary font-mono select-all">${data.hash} <i class="fa-solid fa-fingerprint ml-2 text-slate-600"></i></span>
                             </div>
                         </div>
@@ -458,10 +459,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 resultContainer.innerHTML = `
                     <div class="text-center p-8 bg-darkBase border-2 border-red-500/50 rounded border-l-4 border-l-red-500">
                         <i class="fa-solid fa-triangle-exclamation text-4xl text-red-500 mb-4"></i>
-                        <h3 class="text-xl text-white font-bold mb-2 uppercase tracking-widest">Backend Connection Error</h3>
-                        <p class="text-slate-400 text-sm mb-4">Something went wrong with our verification server. Please try again in a few moments.</p>
+                        <h3 class="text-xl text-white font-bold mb-2 uppercase tracking-widest">Sentinel Network Connection Alert</h3>
+                        <p class="text-slate-400 text-sm mb-4">Failed to reach the VeriPulse decentralized backend. Please verify server status and try again.</p>
                         <p class="text-xs text-red-400 font-mono mb-6">${error.message}</p>
-                        <button onclick="resetVerify()" class="btn-primary">Emergency Protocol: Retry</button>
+                        <button onclick="resetVerify()" class="btn-primary">Retry Telemetry Handshake</button>
                     </div>
                 `;
                 verifyResult.classList.remove("hidden");
@@ -507,7 +508,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const fakeIcon = L.divIcon({
                 className: 'custom-div-icon',
-                html: "<div style='background-color:#ef4444;' class='marker-pin'></div><i class='fa-solid fa-xmark'></i>",
+                html: "<div style='background-color:#f43f5e;' class='marker-pin'></div><i class='fa-solid fa-xmark'></i>",
                 iconSize: [30, 42],
                 iconAnchor: [15, 42],
                 popupAnchor: [0, -35]
@@ -526,12 +527,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 const marker = L.marker([node.lat, node.lng], { icon: icon }).addTo(map);
 
                 marker.bindPopup(`
-                    <div style="background:#0b0f19; color:white; padding:15px; border-radius:8px; font-family:'Inter', sans-serif; border: 1px solid #1e293b; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);">
-                        <span style="font-family:'Oswald', sans-serif; font-size:12px; letter-spacing: 2px; text-transform:uppercase; color:${node.status === 'FAKE' ? '#ef4444' : '#10b981'}; font-weight: 700;">${node.status} / ${node.loc}</span><br/>
+                    <div style="background:#081420; color:white; padding:15px; border-radius:8px; font-family:'Inter', sans-serif; border: 1px solid #064e3b; box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);">
+                        <span style="font-family:'Oswald', sans-serif; font-size:12px; letter-spacing: 2px; text-transform:uppercase; color:${node.status === 'FAKE' ? '#f43f5e' : '#10b981'}; font-weight: 700;">${node.status} / ${node.loc}</span><br/>
                         <b style="font-size:16px; text-transform:uppercase; display:block; margin-top:5px; margin-bottom:5px;">${node.title}</b>
                         <span style="font-size:12px; color:#94a3b8; font-family: monospace;">${node.desc}</span>
-                        <div style="margin-top:10px; padding-top:10px; border-top: 1px solid #1e293b; font-size:10px; font-family:monospace; color:#64748b; font-weight: 600;">
-                            NODE: ${node.auth}
+                        <div style="margin-top:10px; padding-top:10px; border-top: 1px solid #064e3b; font-size:10px; font-family:monospace; color:#10b981; font-weight: 600;">
+                            SENTINEL NODE: ${node.auth}
                         </div>
                     </div>
                 `, {
@@ -605,15 +606,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="relative z-10">
                             <div class="flex items-center gap-2 mb-4">
                                 <span class="w-2 h-2 rounded-full ${news.fake ? 'bg-fake shadow-neon-fake' : 'bg-truth shadow-neon-truth'} animate-pulse"></span>
-                                <span class="text-xs font-mono tracking-widest uppercase ${news.fake ? 'text-fake' : 'text-truth'}">${news.fake ? 'FAKE DETECTED' : 'VERIFIED TRUTH'}</span>
+                                <span class="text-xs font-mono tracking-widest uppercase ${news.fake ? 'text-fake' : 'text-truth'}">${news.fake ? 'DISINFO DETECTED' : 'VERIFIED TRUTH'}</span>
                             </div>
                             <h3 class="text-lg font-sans font-black uppercase text-white mb-4 leading-snug group-hover:text-brandPrimary transition-colors tracking-tighter">${news.title}</h3>
                         </div>
                         
-                        <div class="relative z-10 pt-4 border-t border-slate-800 flex items-center justify-between">
+                        <div class="relative z-10 pt-4 border-t border-emerald-950/40 flex items-center justify-between">
                             <span class="text-[10px] text-slate-500 font-mono uppercase bg-darkSurface px-2 py-1 border border-slate-800">SRC: ${news.source}</span>
-                            <div class="text-[9px] text-brandPrimary opacity-0 group-hover:opacity-100 transition-opacity font-bold"><i class="fa-solid fa-arrow-up-right-from-square"></i> OPEN</div>
-                            <span class="text-[10px] text-slate-400 flex items-center gap-1 font-mono uppercase bg-slate-900 px-2 py-1 border border-slate-800"><i class="fa-solid fa-server text-brandPrimary"></i> ${news.auth}</span>
+                            <div class="text-[9px] text-brandPrimary opacity-0 group-hover:opacity-100 transition-opacity font-bold"><i class="fa-solid fa-arrow-up-right-from-square"></i> VIEW REPORT</div>
+                            <span class="text-[10px] text-slate-400 flex items-center gap-1 font-mono uppercase bg-slate-900 px-2 py-1 border border-slate-800"><i class="fa-solid fa-satellite text-brandPrimary"></i> ${news.auth}</span>
                         </div>
                     `;
 
